@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Camina la gràfica · Step Quiz</title>
+    <meta name="description" content="Fes la gràfica distància–temps caminant per un passadís.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/tokens.css?v=5f30a5b3">
+    <link rel="stylesheet" href="css/camina.css?v=644852db">
+</head>
+<body>
+    <header class="capcalera">
+        <h1>Camina la gràfica</h1>
+        <button type="button" class="btn btn-petit" id="btn-projector" aria-pressed="false">Projector</button>
+    </header>
+
+    <nav id="modes" class="modes" aria-label="Modes"></nav>
+
+    <div id="selector" class="selector" hidden>
+        <button type="button" class="btn btn-petit" id="btn-anterior" aria-label="Repte anterior">‹</button>
+        <label class="sr" for="tria-repte">Repte</label>
+        <select id="tria-repte"></select>
+        <button type="button" class="btn btn-petit" id="btn-seguent" aria-label="Repte següent">›</button>
+        <span id="nivell" class="nivell"></span>
+    </div>
+
+    <main class="principal">
+        <section class="zona-passadis" aria-label="Passadís">
+            <svg id="passadis" class="passadis" xmlns="http://www.w3.org/2000/svg" aria-label="Passadís de 10 metres: la porta a l’esquerra i la finestra a la dreta. Toca o arrossega per caminar; fletxes esquerra i dreta."></svg>
+            <p id="lectura" class="lectura" aria-hidden="true"></p>
+        </section>
+
+        <section class="zona-grafica" aria-label="Gràfica distància–temps">
+            <canvas id="grafica" class="grafica" tabindex="0" aria-label="Gràfica: distància a la porta (metres) segons el temps (segons)"></canvas>
+        </section>
+
+        <section class="zona-panell" aria-live="off">
+            <p id="instruccio" class="instruccio"></p>
+            <div id="historia"></div>
+            <div id="feedback" class="feedback" aria-live="polite"></div>
+            <div id="accions" class="accions"></div>
+        </section>
+    </main>
+    <div id="anunci" class="sr" aria-live="assertive"></div>
+
+    <footer class="peu">
+        <p>
+            <button type="button" class="btn btn-petit" id="btn-esborra-progres">Esborra les estrelles</button>
+            Res del que fas surt d’aquest ordinador: les estrelles només es desen en aquest navegador.
+        </p>
+        <p>
+            Material desenvolupat per David Arso Civil per al Departament de Matemàtiques de l’INS Miquel Tarradell.
+            Contingut sota CC BY-NC-SA 4.0, codi sota llicència MIT. <a href="LLICENCIA.md">Llicència</a>.
+        </p>
+    </footer>
+
+    <script src="data/reptes.js?v=e861f56a"></script>
+    <script src="js/motor/atzar.js?v=2996d29a"></script>
+    <script src="js/motor/moviment.js?v=c9d082fe"></script>
+    <script src="js/motor/puntuacio.js?v=880ad0c5"></script>
+    <script src="js/motor/dibuix.js?v=6a41ae36"></script>
+    <script src="js/motor/narrador.js?v=e9ee4e21"></script>
+    <script src="js/ui/textos.js?v=34799820"></script>
+    <script src="js/ui/passadis.js?v=664e0f7e"></script>
+    <script src="js/ui/grafica.js?v=42221d1f"></script>
+    <script src="js/ui/app.js?v=d95d124f"></script>
+</body>
+</html>

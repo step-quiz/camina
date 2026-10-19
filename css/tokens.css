@@ -1,0 +1,91 @@
+/*
+============================================================================
+PROJECTE: camina (Step Quiz, vanilla JS)
+FITXER: css/tokens.css
+ROL: Colors i mides comuns, en mode clar i fosc. Contrast del text ≥ 4,5:1.
+     Els colors de la gràfica (--g-…) també els llegeix js/ui/grafica.js.
+DEPENDÈNCIES: cap. Es carrega abans de css/camina.css.
+============================================================================
+*/
+:root {
+    --text: #1e293b;
+    --text-suau: #475569;
+    --fons: #f8fafc;
+    --panell: #ffffff;
+    --vora-panell: #e2e8f0;
+    --primari: #4338ca;
+    --primari-fosc: #3730a3;
+    --primari-clar: #e0e7ff;
+    --be: #047857;
+    --be-fons: #d1fae5;
+    --error: #b91c1c;
+    --error-fons: #fee2e2;
+    --info: #1d4ed8;
+    --info-fons: #dbeafe;
+
+    /* Passadís */
+    --p-paret: #fdf6e3;
+    --p-terra: #e7d8b8;
+    --p-linia: #a8916a;
+    --p-fusta: #b45309;
+    --p-vidre: #bae6fd;
+    --p-pers: #4338ca;
+    --p-pell: #fcd9b6;
+    --p-text: #57534e;
+
+    /* Gràfica */
+    --g-fons: #ffffff;
+    --g-quadricula: #e5e7eb;
+    --g-eix: #334155;
+    --g-text: #334155;
+    --g-objectiu: #64748b;
+    --g-alumne: #4338ca;
+    --g-referencia: #cbd5e1;
+    --g-destacat: rgba(251, 191, 36, 0.28);
+    --g-destacat-text: #92400e;
+    --g-cursor: #db2777;
+
+    --radi: 10px;
+    --ombra: 0 1px 3px rgba(15, 23, 42, 0.08);
+    --lletra: system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', Arial, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text: #e2e8f0;
+        --text-suau: #94a3b8;
+        --fons: #0f172a;
+        --panell: #1e293b;
+        --vora-panell: #334155;
+        --primari: #a5b4fc;
+        --primari-fosc: #c7d2fe;
+        --primari-clar: #312e81;
+        --be: #6ee7b7;
+        --be-fons: #064e3b;
+        --error: #fca5a5;
+        --error-fons: #450a0a;
+        --info: #93c5fd;
+        --info-fons: #1e3a8a;
+
+        --p-paret: #1e1b16;
+        --p-terra: #3f3a2f;
+        --p-linia: #78716c;
+        --p-fusta: #d97706;
+        --p-vidre: #0c4a6e;
+        --p-pers: #a5b4fc;
+        --p-pell: #e7c3a0;
+        --p-text: #d6d3d1;
+
+        --g-fons: #111827;
+        --g-quadricula: #1f2937;
+        --g-eix: #cbd5e1;
+        --g-text: #cbd5e1;
+        --g-objectiu: #94a3b8;
+        --g-alumne: #a5b4fc;
+        --g-referencia: #374151;
+        --g-destacat: rgba(251, 191, 36, 0.2);
+        --g-destacat-text: #fcd34d;
+        --g-cursor: #f472b6;
+        --ombra: none;
+    }
+}

@@ -1,0 +1,453 @@
+/*
+============================================================================
+PROJECTE: camina (Step Quiz, vanilla JS)
+FITXER: css/camina.css
+ROL: Estils de «Camina la gràfica»: capçalera, modes, selector, passadís,
+     gràfica, panell, mode projector i impressió (negre sobre blanc).
+DEPENDÈNCIES: css/tokens.css (es carrega abans).
+============================================================================
+*/
+* {
+    box-sizing: border-box;
+}
+html {
+    -webkit-text-size-adjust: 100%;
+}
+body {
+    margin: 0;
+    padding: 12px 16px 32px;
+    font-family: var(--lletra);
+    font-size: 17px;
+    line-height: 1.45;
+    color: var(--text);
+    background: var(--fons);
+}
+button,
+input,
+select {
+    font: inherit;
+}
+.sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+/* ── Capçalera, modes i selector ───────────────────────────────────────── */
+.capcalera,
+.modes,
+.selector,
+.principal,
+.peu {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.capcalera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+.capcalera h1 {
+    margin: 0;
+    font-size: 1.5em;
+    color: var(--primari-fosc);
+}
+.modes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+.mode {
+    min-height: 44px;
+    padding: 6px 16px;
+    border: 1px solid var(--vora-panell);
+    border-radius: 999px;
+    background: var(--panell);
+    color: var(--text);
+    cursor: pointer;
+}
+.mode.actual {
+    background: var(--primari);
+    border-color: var(--primari);
+    color: var(--panell);
+    font-weight: 600;
+}
+.selector {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+.selector select {
+    flex: 0 1 22em;
+    min-width: 0;
+    min-height: 44px;
+    padding: 4px 8px;
+    border: 1px solid var(--vora-panell);
+    border-radius: 8px;
+    background: var(--panell);
+    color: var(--text);
+    max-width: 100%;
+}
+.nivell {
+    color: var(--text-suau);
+}
+.btn:focus-visible,
+.mode:focus-visible,
+.opcio:focus-visible,
+select:focus-visible,
+.passadis:focus-visible,
+.grafica:focus-visible {
+    outline: 3px solid var(--info);
+    outline-offset: 2px;
+}
+
+/* ── Disposició ────────────────────────────────────────────────────────── */
+.principal {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    grid-template-areas:
+        'passadis panell'
+        'grafica panell';
+    gap: 14px;
+    align-items: start;
+}
+.zona-passadis {
+    grid-area: passadis;
+}
+.zona-grafica {
+    grid-area: grafica;
+}
+.zona-panell {
+    grid-area: panell;
+}
+@media (max-width: 820px) {
+    .principal {
+        grid-template-columns: 1fr;
+        grid-template-areas: 'passadis' 'grafica' 'panell';
+    }
+}
+.zona-passadis,
+.zona-grafica,
+.zona-panell {
+    background: var(--panell);
+    border: 1px solid var(--vora-panell);
+    border-radius: var(--radi);
+    box-shadow: var(--ombra);
+    padding: 10px;
+}
+
+/* ── Passadís ──────────────────────────────────────────────────────────── */
+.passadis {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1000 / 230;
+    touch-action: none; /* només aquí i a la gràfica: la resta de la pàgina es pot desplaçar */
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: pointer;
+    border-radius: 8px;
+}
+.p-paret {
+    fill: var(--p-paret);
+}
+.p-terra {
+    fill: var(--p-terra);
+}
+.p-linia-terra,
+.p-marca {
+    stroke: var(--p-linia);
+    stroke-width: 2;
+}
+.p-num,
+.p-unitat,
+.p-rotul {
+    fill: var(--p-text);
+    font-size: 19px;
+    text-anchor: middle;
+    font-family: var(--lletra);
+}
+.p-rotul {
+    font-size: 18px;
+    font-weight: 600;
+}
+.p-porta rect {
+    fill: var(--p-fusta);
+}
+.p-porta circle {
+    fill: var(--p-paret);
+}
+.p-finestra rect {
+    fill: var(--p-vidre);
+    stroke: var(--p-fusta);
+    stroke-width: 5;
+}
+.p-finestra line {
+    stroke: var(--p-fusta);
+    stroke-width: 4;
+}
+.p-pers .p-cos {
+    fill: var(--p-pers);
+}
+.p-pers .p-cap {
+    fill: var(--p-pell);
+    stroke: var(--p-pers);
+    stroke-width: 3;
+}
+.p-pers .p-ull {
+    fill: var(--text);
+}
+.p-pers .p-cama,
+.p-pers .p-brac {
+    stroke: var(--p-pers);
+    stroke-width: 7;
+    stroke-linecap: round;
+}
+.p-pers .p-brac {
+    stroke-width: 6;
+}
+.p-fantasma line {
+    stroke: var(--p-pers);
+    stroke-width: 3;
+    stroke-dasharray: 8 6;
+}
+.p-fantasma text {
+    fill: var(--p-pers);
+    font-size: 17px;
+    font-weight: 600;
+    font-family: var(--lletra);
+}
+/* Al mòbil el passadís és petit: lletra del regle més grossa */
+@media (max-width: 600px) {
+    .p-num,
+    .p-unitat {
+        font-size: 40px;
+    }
+    .p-rotul,
+    .p-fantasma text {
+        font-size: 34px;
+    }
+}
+.p-objectiu circle {
+    fill: none;
+    stroke: var(--p-pers);
+    stroke-width: 3;
+}
+.p-compte {
+    fill: var(--p-pers);
+    font-size: 110px;
+    font-weight: 800;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    font-family: var(--lletra);
+}
+.lectura {
+    margin: 6px 4px 0;
+    color: var(--text-suau);
+    font-variant-numeric: tabular-nums;
+    min-height: 1.45em;
+}
+
+/* ── Gràfica ───────────────────────────────────────────────────────────── */
+.grafica {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    max-height: 70vh;
+    touch-action: none;
+    border-radius: 6px;
+}
+
+/* ── Panell ────────────────────────────────────────────────────────────── */
+.instruccio {
+    font-weight: 700;
+    margin: 0 0 8px;
+}
+.nota {
+    color: var(--text-suau);
+    margin: 6px 0;
+}
+.petita {
+    font-size: 0.9em;
+}
+.historia-text {
+    font-size: 1.05em;
+    border-left: 4px solid var(--primari);
+    padding: 4px 10px;
+    margin: 6px 0;
+}
+.pregunta {
+    font-weight: 600;
+}
+.opcions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 8px 0;
+}
+.opcio {
+    min-height: 44px;
+    text-align: left;
+    padding: 10px 12px;
+    border: 2px solid var(--vora-panell);
+    border-radius: 10px;
+    background: var(--panell);
+    color: var(--text);
+    cursor: pointer;
+}
+.opcio .lletra {
+    display: inline-block;
+    min-width: 1.6em;
+    font-weight: 800;
+    color: var(--primari-fosc);
+}
+.opcio.bona {
+    border-color: var(--be);
+    background: var(--be-fons);
+}
+.opcio.bona::after {
+    content: ' ✓';
+    font-weight: 700;
+    color: var(--be);
+}
+.opcio.dolenta {
+    border-color: var(--error);
+    opacity: 0.75;
+    text-decoration: line-through;
+}
+.opcio.dolenta::after {
+    content: ' ✗';
+    color: var(--error);
+}
+.feedback .fb {
+    margin: 8px 0;
+    padding: 8px 10px;
+    border-radius: 8px;
+}
+.fb-error {
+    background: var(--error-fons);
+    color: var(--error);
+}
+.fb-be {
+    background: var(--be-fons);
+    color: var(--be);
+}
+.fb-info {
+    background: var(--info-fons);
+    color: var(--info);
+}
+.fb-icona {
+    font-weight: 700;
+}
+.num {
+    display: inline-block;
+    min-width: 1.5em;
+    padding: 0 4px;
+    border-radius: 999px;
+    background: #fde68a;
+    color: #78350f;
+    text-align: center;
+    font-weight: 800;
+}
+.estrelles {
+    font-size: 1.3em;
+    letter-spacing: 0.05em;
+    color: #b45309;
+}
+@media (prefers-color-scheme: dark) {
+    .estrelles {
+        color: #fcd34d;
+    }
+}
+.accions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+.btn {
+    min-height: 44px;
+    padding: 8px 16px;
+    border: 2px solid var(--primari);
+    border-radius: 8px;
+    background: var(--panell);
+    color: var(--primari-fosc);
+    font-weight: 600;
+    cursor: pointer;
+}
+.btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+.btn-principal {
+    background: var(--primari);
+    color: var(--panell);
+}
+.btn-petit {
+    min-height: 44px;
+    padding: 4px 12px;
+}
+.peu {
+    margin-top: 18px;
+    color: var(--text-suau);
+    font-size: 0.85em;
+}
+.peu a {
+    color: inherit;
+}
+
+/* ── Mode projector: la gràfica a tota l'amplada i lletra gran ───────── */
+body.projector {
+    font-size: 22px;
+}
+body.projector .principal {
+    grid-template-columns: 1fr;
+    grid-template-areas: 'grafica' 'passadis' 'panell';
+    max-width: none;
+}
+body.projector .grafica {
+    aspect-ratio: auto;
+    height: 62vh;
+    max-height: none;
+}
+body.projector .passadis {
+    max-height: 22vh;
+}
+body.projector .peu,
+body.projector .capcalera h1 {
+    display: none;
+}
+
+/* ── Impressió ─────────────────────────────────────────────────────────── */
+@page {
+    size: A4;
+    margin: 15mm;
+}
+@media print {
+    body {
+        background: #fff;
+        color: #000;
+    }
+    .modes,
+    .selector,
+    .accions,
+    .peu,
+    #btn-projector {
+        display: none !important;
+    }
+    .zona-passadis,
+    .zona-grafica,
+    .zona-panell {
+        border: 1px solid #000;
+        box-shadow: none;
+        background: #fff;
+    }
+}
